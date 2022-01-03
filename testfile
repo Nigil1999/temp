@@ -1,0 +1,35 @@
+package com.torryharris.demo.controller;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+//Java - JUnit
+//JavaScript - Jasmine
+
+@SpringBootTest
+public class EmployeeControllerTests {
+
+    @Autowired
+    private EmployeeController employeeController;
+
+    //Positive Test Case
+    @Test
+    public void testGetEmpById(){
+        HttpStatus expected = HttpStatus.OK;
+        HttpStatus actual = employeeController.getEmpById(1).getStatusCode(); //200
+        assertEquals(expected, actual);
+    }
+
+    //Negative Test Case
+    @Test
+    public void testGetEmpById2(){
+        HttpStatus expected = HttpStatus.NOT_FOUND;
+        HttpStatus actual = employeeController.getEmpById(1).getStatusCode(); //200
+        assertNotEquals(expected, actual);
+    }
+}
